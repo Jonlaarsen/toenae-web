@@ -1,0 +1,613 @@
+@import "tailwindcss";
+
+:root {
+  --background:white ;
+  --foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-jetbrains-mono);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-pixel: var(--font-pixel-font);
+}
+
+/* Font pixel utility class */
+.font-pixel,
+.font-pixel * {
+  font-family: var(--font-pixel-font), 'Press Start 2P', cursive !important;
+}
+
+
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+}
+
+/* Prevent flash of unstyled content - hide animated elements until GSAP loads */
+.landing-container,
+.latest-container,.product-container {
+  opacity: 0;
+}
+
+/* Product items start hidden - GSAP will animate them in */
+.product-item {
+  opacity: 0;
+}
+
+/* Navbar elements start hidden - GSAP will animate on home page, show immediately on other pages */
+.logo,
+.links {
+  opacity: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px); /* Start position */
+  }
+  50% {
+    transform: translateY(-20px); /* Move 20px up (adjust as needed) */
+  }
+  100% {
+    transform: translateY(0px); /* Return to start position */
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.glitch-effect {
+  animation: glitch 0.3s infinite;
+}
+
+.float {
+  animation: float 2s ease-in-out infinite alternate;
+}
+
+.gradient-overlay{
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.300) 0%, transparent 12%, transparent 88%, rgba(0, 0, 0, 0.300) 100%),
+              linear-gradient(to bottom, rgba(0, 0, 0, 0.300) 0%, transparent 8%, transparent 92%, rgba(0, 0, 0, 0.300) 100%),
+}
+
+.sparkles-container::before,
+  .sparkles-container::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    box-shadow:
+      100px 200px white,
+      300px 100px rgba(255, 182, 193, 0.8),
+      500px 300px rgba(230, 230, 250, 0.8),
+      700px 150px rgba(178, 245, 234, 0.8),
+      900px 250px rgba(135, 206, 235, 0.8),
+      200px 400px white,
+      400px 500px rgba(255, 218, 185, 0.8),
+      600px 450px rgba(255, 182, 193, 0.8),
+      800px 350px rgba(230, 230, 250, 0.8);
+    animation: sparkleFloat 8s ease-in-out infinite;
+        }
+.sparkles-container::after {
+  animation-delay: 2s;
+  box-shadow:
+    150px 300px rgba(255, 182, 193, 0.8),
+    350px 200px white,
+    550px 400px rgba(178, 245, 234, 0.8),
+    750px 250px rgba(135, 206, 235, 0.8),
+    950px 350px rgba(255, 218, 185, 0.8),
+    250px 500px rgba(230, 230, 250, 0.8),
+    450px 550px white,
+    650px 450px rgba(255, 182, 193, 0.8);
+}
+
+  @keyframes sparkleFloat {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateY(-20px) scale(1.2);
+      opacity: 1;
+    }
+  }
+
+   .bg-pattern {
+          background-image:
+            radial-gradient(
+              circle at 20% 50%,
+              rgba(255, 182, 193, 0.649) 0%,
+              transparent 50%
+            ),
+            radial-gradient(
+              circle at 80% 80%,
+              rgba(230, 230, 250, 0.661) 0%,
+              transparent 50%
+            ),
+            radial-gradient(
+              circle at 40% 20%,
+              rgba(178, 245, 234, 0.608) 0%,
+              transparent 50%
+            );
+          animation: patternMove 20s ease-in-out infinite;
+        }
+
+        @keyframes patternMove {
+          0%,
+          100% {
+            transform: translate(0, 0) scale(1);
+          }
+          50% {
+            transform: translate(30px, 30px) scale(1.1);
+          }
+        }
+
+    
+
+        /* Title Styles */
+        .anime-title-wrapper {
+          position: relative;
+        }
+
+        .anime-title {
+          
+          animation: titleBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes titleBounce {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-5px);
+          }
+        }
+
+        .anime-subtitle {
+          animation: subtitleShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes subtitleShimmer {
+          0%,
+          100% {
+            opacity: 0.9;
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+
+        /* Badge Styles */
+        .anime-badge {
+          padding: 10px 20px;
+          border-radius: 25px;
+          font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+          font-weight: bold;
+          font-size: 14px;
+          border: 3px solid;
+          box-shadow:
+            0 4px 8px rgba(0, 0, 0, 0.1),
+            inset 0 2px 4px rgba(255, 255, 255, 0.3);
+          transition: all 0.3s;
+          animation: badgeFloat 3s ease-in-out infinite;
+        }
+
+        .anime-badge.pink {
+          background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+          border-color: #ff69b4;
+          color: #ff1493;
+        }
+
+        .anime-badge.lavender {
+          background: linear-gradient(135deg, #e6e6fa, #dda0dd);
+          border-color: #9370db;
+          color: #8a2be2;
+        }
+
+        .anime-badge.mint {
+          background: linear-gradient(135deg, #b2f5ea, #a0e7e5);
+          border-color: #48d1cc;
+          color: #20b2aa;
+        }
+
+        .anime-badge:hover {
+          transform: translateY(-3px) scale(1.05);
+          box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.15),
+            inset 0 2px 4px rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes badgeFloat {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-5px);
+          }
+        }
+
+        /* Container Styles */
+        .anime-container {
+          background: rgba(255, 255, 255, 0.9);
+          border: 4px solid #ffb6c1;
+          border-radius: 30px;
+          box-shadow:
+            0 10px 40px rgba(255, 182, 193, 0.3),
+            inset 0 0 30px rgba(255, 182, 193, 0.1);
+          position: relative;
+          backdrop-filter: blur(10px);
+          overflow: hidden;
+        }
+
+        .anime-container::before {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(
+            circle,
+            rgba(255, 182, 193, 0.1) 0%,
+            transparent 70%
+          );
+          animation: containerGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes containerGlow {
+          0%,
+          100% {
+            transform: rotate(0deg);
+          }
+          50% {
+            transform: rotate(180deg);
+          }
+        }
+
+        /* Status Bar */
+        .anime-status-bar {
+          background: linear-gradient(90deg, #ffb6c1, #e6e6fa, #b2f5ea);
+          border-bottom: 3px solid #ff69b4;
+          padding: 12px 20px;
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+          gap: 16px;
+          font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+          font-weight: 600;
+          color: #8a2be2;
+          border-radius: 30px 30px 0 0;
+        }
+
+        .anime-dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          animation: dotPulse 1.5s ease-in-out infinite;
+          box-shadow: 0 0 10px currentColor;
+        }
+
+        .anime-dot.pink {
+          background: #ff69b4;
+          color: #ff69b4;
+        }
+
+        .anime-dot.mint {
+          background: #48d1cc;
+          color: #48d1cc;
+        }
+
+        .anime-dot.lavender {
+          background: #9370db;
+          color: #9370db;
+        }
+
+        @keyframes dotPulse {
+          0%,
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.3);
+            opacity: 0.7;
+          }
+        }
+
+        /* Input Styles */
+        .anime-input-group {
+          position: relative;
+        }
+
+        .anime-label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+          color: #9370db;
+          font-size: 16px;
+          font-weight: 600;
+          margin-bottom: 10px;
+        }
+
+        .label-icon {
+          font-size: 20px;
+          animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.2);
+          }
+        }
+
+        .anime-input,
+        .anime-textarea {
+          width: 100%;
+          background: rgba(255, 255, 255, 0.95);
+          border: 3px solid #ffb6c1;
+          border-radius: 15px;
+          color: #8a2be2;
+          font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+          font-size: 16px;
+          padding: 14px 18px;
+          outline: none;
+          transition: all 0.3s;
+          box-shadow:
+            inset 0 2px 8px rgba(255, 182, 193, 0.2),
+            0 2px 8px rgba(255, 182, 193, 0.1);
+        }
+
+        .anime-input:focus,
+        .anime-textarea:focus {
+          border-color: #9370db;
+          box-shadow:
+            inset 0 2px 8px rgba(147, 112, 219, 0.3),
+            0 4px 12px rgba(147, 112, 219, 0.2),
+            0 0 0 4px rgba(147, 112, 219, 0.1);
+          transform: translateY(-2px);
+        }
+
+        .anime-input::placeholder,
+        .anime-textarea::placeholder {
+          color: rgba(147, 112, 219, 0.5);
+        }
+
+        .anime-textarea {
+          resize: vertical;
+          min-height: 150px;
+          font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+        }
+
+        /* Button Styles */
+        .anime-button {
+          position: relative;
+          background: linear-gradient(135deg, #ff69b4, #9370db);
+          border: 3px solid #ff1493;
+          border-radius: 25px;
+          color: white;
+          font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+          font-size: 18px;
+          font-weight: bold;
+          padding: 16px 40px;
+          cursor: pointer;
+          transition: all 0.3s;
+          overflow: hidden;
+          box-shadow:
+            0 6px 20px rgba(255, 105, 180, 0.4),
+            inset 0 2px 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .anime-button:hover {
+          transform: translateY(-3px) scale(1.05);
+          box-shadow:
+            0 8px 25px rgba(255, 105, 180, 0.5),
+            inset 0 2px 4px rgba(255, 255, 255, 0.4);
+          background: linear-gradient(135deg, #ff1493, #8a2be2);
+        }
+
+        .anime-button:active {
+          transform: translateY(-1px) scale(1.02);
+        }
+
+        .anime-button-text {
+          position: relative;
+          z-index: 1;
+        }
+
+        .anime-button-sparkle {
+          position: absolute;
+          top: 50%;
+          right: 20px;
+          transform: translateY(-50%);
+          font-size: 20px;
+          animation: sparkleRotate 2s linear infinite;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        .anime-button:hover .anime-button-sparkle {
+          opacity: 1;
+        }
+
+        @keyframes sparkleRotate {
+          0% {
+            transform: translateY(-50%) rotate(0deg);
+          }
+          100% {
+            transform: translateY(-50%) rotate(360deg);
+          }
+        }
+
+        /* Info Boxes */
+        .anime-info-box {
+          background: rgba(255, 255, 255, 0.9);
+          border: 3px solid;
+          border-radius: 20px;
+          padding: 24px;
+          text-align: center;
+          font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+          transition: all 0.3s;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .anime-info-box.pink {
+          border-color: #ffb6c1;
+          color: #ff1493;
+        }
+
+        .anime-info-box.lavender {
+          border-color: #e6e6fa;
+          color: #9370db;
+        }
+
+        .anime-info-box.mint {
+          border-color: #b2f5ea;
+          color: #20b2aa;
+        }
+
+        .anime-info-box:hover {
+          transform: translateY(-5px) scale(1.03);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Decorative Elements */
+        .anime-decoration {
+          font-size: 36px;
+          padding: 12px 20px;
+          border-radius: 15px;
+          background: rgba(255, 255, 255, 0.7);
+          border: 2px solid;
+          animation: decorationFloat 4s ease-in-out infinite;
+          backdrop-filter: blur(5px);
+        }
+
+        .anime-decoration.pink {
+          color: #ff69b4;
+          border-color: #ffb6c1;
+          animation-delay: 0s;
+        }
+
+        .anime-decoration.lavender {
+          color: #9370db;
+          border-color: #e6e6fa;
+          animation-delay: 0.5s;
+        }
+
+        .anime-decoration.mint {
+          color: #48d1cc;
+          border-color: #b2f5ea;
+          animation-delay: 1s;
+        }
+
+        .anime-decoration.peach {
+          color: #ff8c69;
+          border-color: #ffdab9;
+          animation-delay: 1.5s;
+        }
+
+        .anime-decoration.sky {
+          color: #87ceeb;
+          border-color: #b0e0e6;
+          animation-delay: 2s;
+        }
+
+        @keyframes decorationFloat {
+          0%,
+          100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-15px) rotate(10deg);
+          }
+        }
+
+        /* Success Message */
+        .anime-success {
+          font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+          font-weight: 900;
+          color: #ff69b4;
+          animation: successBounce 1s ease-in-out infinite;
+        }
+
+        .anime-success-en {
+          font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+          color: #9370db;
+          font-weight: bold;
+        }
+
+        @keyframes successBounce {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+        }
+
+/* Particle Animation */
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translate(20px, -30px) scale(1.2);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-15px, -50px) scale(0.9);
+    opacity: 0.7;
+  }
+  75% {
+    transform: translate(30px, -20px) scale(1.1);
+    opacity: 0.4;
+  }
+}
+
+/* Checkout link wave animation */
+.checkout-text {
+  display: inline-block;
+}
+
+.checkout-char {
+  display: inline-block;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.char-space {
+  display: inline-block;
+  width: 0.25em;
+}
