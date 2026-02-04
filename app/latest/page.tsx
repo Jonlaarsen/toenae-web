@@ -2,6 +2,7 @@
 import LatestHeroPhotos from "@/components/latest-page/LatestHeroPhotos";
 import LatestPhotos from "@/components/latest-page/LatestPhotos";
 import LatestProducts from "@/components/latest-page/LatestProducts";
+import LatestImageScroller from "@/components/latest-page/LatestImageScroller";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -32,7 +33,12 @@ const page = () => {
       <div className="w-full h-full bg- py-10">
         <LatestProducts />
       </div>
-      <div className="w-full h-full bg-lime-100 py-10">
+      <div className="min-h-screen">
+        <LatestImageScroller />
+      </div>
+      {/* Spacer to ensure scroll works */}
+      <div className="w-full bg-lime-100">
+        {" "}
         <LatestPhotos />
       </div>
     </div>

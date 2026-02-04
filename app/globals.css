@@ -425,9 +425,7 @@ body {
           box-shadow:
             0 6px 20px rgba(255, 105, 180, 0.4),
             inset 0 2px 4px rgba(255, 255, 255, 0.3);
-        }
-
-        .anime-button:hover {
+        }        .anime-button:hover {
           transform: translateY(-3px) scale(1.05);
           box-shadow:
             0 8px 25px rgba(255, 105, 180, 0.5),
